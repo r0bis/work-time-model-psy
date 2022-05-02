@@ -2,34 +2,35 @@ The model reflects work of a PD unit that provides mainly psychological interven
 
 ## Principles
 
-1. Express everything in easy to grasp time units. Make only simple changes such as changing number of minutes of an intervention component or number of times such component is needed in one cycle of intervention. Allow the spredsheet mechanism to propagate the changes across the whole spreadsheet.
-	1.1. _You only change number of minutes and number of times_. Do not change cells with time format, or formulas.
-2. Everybody has a specific amount of working time available per year. Capacity is also measured in how many people can be served per year given the MDT members we have.
-3. This model works for small teams (2 to 17 people) who directly work with the patients. It can be upscaled to larger teams, but perhaps more than 30 would become unwieldy. However it could work if we had some "generic" workers - i.e. their expected work would be the same - say provide 30 episodes of SCM and 30 assessments per year. Then we could record that we employ 2 such therapists and multiply the results.
-4. The timings of interventions are first assessed by the author and then opinions of clinicians are sought both individually and at team away days. Results are a pretty good estimate how much time each intervention will take on average.
-5. The overhead time associated with each clinician is looked at on _per-week_ basis - as this is time easy to understand. Meetings and such things are usually well understood weekly. Later in the individual clinican boxes the weekly amount is multiplied by the available hours variable. 
+1. **Express everything in easy to grasp time units**. Make only simple changes such as changing number of minutes of an intervention component or number of times such component is needed in one cycle of intervention. Allow the spredsheet mechanism to propagate the changes across the whole spreadsheet.  
+	1. _You only change number of minutes and number of times_. Do not change cells with time format, or formulas.
+2. Everybody has a _specific amount of working (contracted) time available per year_. Capacity of our unit is measured in how many people can be served per year given the MDT members we have and pathways we have (e.g. MBT, SCM, groups).  
+	1. Capacity will be visualized in a throughput model.  
+3. This _model works for small teams (2 to 17) of people who directly work with the patients_. It can be upscaled to larger teams, but perhaps more than 30 would become unwieldy. However it could work with more people if we had some "generic" workers - i.e. their expected work during the year would be the same - say to provide 30 episodes of SCM and 30 assessments per year. Then we could record that we employ 2 such therapists. There is a provision for this described below (top middle cell in clinician time box).
+4. The **timings of interventions** have been first assessed by the author and then opinions of clinicians are changed the estimates. Both individual input and collective input was gained at team away days. Resulting timings are a pretty good estimate how much time each intervention will take.
+5. The overhead time associated with each clinician is looked at on _per-week_ basis - as this is time easy to understand. Meetings and such things are usually better understood at weekly timescale. Later in the individual clinican time boxes we can estimate better how much time each clinician is to spend on overhead activity. 
 
 ## Parts
 
-Description of parts of the model. Many cells contain a tiny red triangle in the top-right corner. That is a note you can see hovering the mouse over the triangle. Notes were mostly taken during the team discussion process in the away-day and reflect why we had to choose those numbers. Further notes were added to document functional parts of the spreadsheet. 
+Description of parts of the model. Many cells contain a tiny red triangle in the top-right corner. That is a note which you can see in Excel when hovering the mouse over that triangle. Notes were mostly taken during the team discussion process in the away-day and reflect why the numbers are what they are. Further notes were added to document functional parts of the spreadsheet. The notes have served as basis for this README. 
 
-### Intervention box
+### Intervention boxes
 
 ![Intervention: SCM](img/interv_assmt.png)
 
-Top left cell - "Individual Factor" for SCM - how many clinicians it takes to conduct this activity.
+> Top left cell - "Individual Factor" for SCM - how many clinicians it takes to conduct this activity. For groups it usually is 2. Group activities also have a group-factor - how many people can be in a group.
 
 List of component activities. Names are hoped to be short and self - explanatory:
 
-* `ASSMT-Contact` - direct contact with the patient. Preferably F2F. 60 minutes. 2.6 times per assessment. (We see people for 2 to 3 sessions per assessment - slightly more 3 than 2 - hence 2.6 times on average)
-* `ASSMT-preRead` - we have to read documentation and notes before we see the patient. 45 minutes, once per assessment. (In complex cases may take more)
-* `ASSMT-Contact-write` - after the contact we will need to open RiO and write the clinical note. 30 minutes, happens same number of times as we see the patient.
+* `ASSMT-Contact` - direct contact with the patient. Preferably _F2F_ for 60 minutes and happen _2.6_ times per assessment. (We see people for 2 to 3 sessions per assessment - slightly more 3 than 2 - hence 2.6 times on average)
+* `ASSMT-preRead` - we have to read documentation and notes before we see the patient. 45 minutes, once per assessment. (In complex cases may take more, in new cases - less).
+* `ASSMT-Contact-write` - after the contact we will need to open RiO and write the clinical note. 30 minutes; it happens the same number of times as we see the patient.
 * `ASSMT-Report` - after we are done with the assessment we need to put together a report (includes diagnosis, basis for diagnosis, risk and comprehensive history). Without a report a proper assessment has not happened. 2 hours, once per assessment.
-* `ASSMT- RiskAssessment` - we have to open RiO and deal with a cumbersome form. Preferably copy-paste risk summary and plan from the report, but it still will take time. RA is a must. 15 minutes, once per assessment.
-* `ASSMT-Admin-ifYES` - includes clustering, clinical coding, moving to appropriate part of the waiting lists and letters. It is always easier to say "Yes, we take the patient" (which happens in ~ 60% of cases). 25 minutes (if we have admin support), once.
+* `ASSMT- RiskAssessment` - we have to open RiO and deal with a cumbersome form. Preferably copy-paste risk summary and plan from the report, but it still will take time. RA is a must. 15 minutes, once per assessment. Sometimes might take more time.
+* `ASSMT-Admin-ifYES` - includes clustering, clinical coding, moving to appropriate part of the waiting lists and letters. It is always easier to say "Yes, we take the patient" (which happens in ~ 60% of cases). Takes 25 minutes (_if_ we have admin support), once per assessment.
 * `ASSMT-Admin-ifNO` Saying no is always more complex, need to say why and suggest alternatives. 45 minutes, once.
 
-Intervention time is tallied in the light yellow cell in the first row. Formula is: `=SUMPRODUCT(C19:C25,D19:D25)/1440` - which means sum of horizontal multiplication products divided by 1440. Here we have 0.310416667 days which translates to 07:27:00 (seven hours and 27 minutes). Dividing the sum of minutes by 1440 we get days as there are that number of minutes within 24 hours. The decimal number is then formatted as time (Custom format `[hh]:mm:ss`).
+Intervention time is tallied in the light yellow cell in the first row. Formula is: `=SUMPRODUCT(C19:C25,D19:D25)/1440` - which means sum of horizontal multiplication products divided by 1440. Here we have 0.310416667 days which translates to 07:27:00 (seven hours and 27 minutes). Dividing the sum of minutes by 1440 we get days as there are 1440 number of minutes within 24 hours. The decimal number is then formatted as time (Custom format `[hh]:mm:ss`). The idea is - this much of one clinician's working time will be taken by this activity. _You do not need to change cells that are formatted as time._
 
 Below the intervention time we can see the percentage of time that is spent on direct interaction with the patient. It comes comparing the contact time (for some interventions it includes also telephone calls) with the total time spent on the activity.
 
@@ -41,26 +42,25 @@ Finally to the right of the yellow cell there is a classificator of what kind of
 
 #### Two Header rows:
 
-* Two top left cells - green and yellow - identify the clinician type and the clinician. 
-* Top middle cell identifies the number of times we employ this clinician. Here it says 1 meaning this person is employed (this tallies then to "How many therapists employed" box.). It could say 0 - meaning this clinician is not actively employed now - i.e. position is vacant, maternity leave (uncovered), long term sickness etc. It could be also 2 or more. would mean we are employing more - e.g.than one clinician with the same kind of workload. This could be good for larger teams.
-* Top right cell identifies how many FTEs the person is working at. For example here 0.8 means 4 days a week. Full-time would be 1. It has direct bearing to how many hours the clinician is available to work for the Trust. This time is displayed in grey in the cell just below the top right cell.
-* Bright green cell in the middle `HOUR TALLY` - identifies how many hours the clinician's working time are we planning to use. This is sum from the column below it. If we plan to underutilize the available hours the cell turns yellow, if we plan to give more hours than available, the cell turns red (this is achieved by conditional formatting). Tolerance factor for colour changes is 0.2% - i.e. at the moment we are "overworking" this therapist for only 2 hours per year, therefore cell is still green, indicating good planning. Point two % were chosen because they are roughly 3 hours one way or the other.
+* Two top left cells - green and yellow - **identify** the clinician type and the clinician. 
+* Top middle cell identifies the _number of times we employ this clinician_. Here it says 1 meaning this person is employed (this tallies then to "How many therapists employed" box.). It could say 0 - meaning this clinician is not actively employed now - i.e. position is vacant, maternity leave (uncovered), long term sickness etc. It could be also 2 or more. would mean we are employing more - e.g.than one clinician with the same kind of workload. This could be good for larger teams.
+* Top right cell identifies how many WTEs the person is working at. For example here 0.8 means 4 days a week. Full-time would be 1. It has direct bearing to how many hours the clinician is available to work for the team. This time is displayed in grey in the cell just below the top right cell.
+* Bright green cell in the middle `HOUR TALLY` - identifies how many hours of the clinician's working time we are planning to use. This is a sum from the values below it. If we plan to underutilize the available hours the cell turns yellow, if we plan to give more hours than available, the cell turns red (this is achieved by conditional formatting). Tolerance factor for colour changes is 0.2% - in this example we are "overworking" this therapist for only 2 hours per year, therefore cell is still green, indicating good planning. Point two % were chosen because they correspond to roughly 3 hours one way or the other.
 
 #### Three Overhead rows:
 
-Summarize various overhead activities that are associated with work. This is the time gone before any group or individual work is undertaken. Further described in `Weekly Overhead` section. 
+Summarize various overhead activities that are associated with work. This is the time gone even before any group or individual work with patients is undertaken. Further described in `Weekly Overhead` section. 
 
 * Meetings. Here we can see that the therapist attends 0.6 meetings (some go because therapist is employed at 0.8 and then she chooses to omit some more). Nevertheless the meetings occupy 270:36:00 working hours of her working year. 
-* Ongoing work - not associated with her direct patient activities. This is work done ad hoc - e.g. responding to emergencies (suicidality, sudden disruptions, etc.), email routine (probably underestimated as 30 min per day), reviews and duty work. This amounts to 6 hours and 30 minutes per week and in case of 0.8 employment is 228:48:00 hours per year.
+* Ongoing work - not associated with her direct patient activities. This is work done _ad hoc_ - e.g. responding to emergencies (suicidality, sudden disruptions, etc.), email routine (probably underestimated as 30 min per day), reviews and duty work. This amounts to 6 hours and 30 minutes per week and in case of 0.8 employment is 228:48:00 hours per year.
 * Development time - 76:24:00 per year. This would consist of audit activity, CPD training, mandatory training, and one away day per year. Estimated at 2 hours and 10 minutes per week, probably contracts say it should be more, but in practice this time more often is taken by relentless clinical activity. In case of this therapist at 0.8 employment it amounts to 76:24:00 hours per year.
-* Right pale-grey cell. This is the third cell down and is followed by two blank cells below it. It shows the difference between the hours available and the hours we intend to give to this therapist. If we are "underworking" the therapist i.e. HOUR TALLY is yellow are less than her available hours, the result here is 0. If we are planning to overwork the therapist, this cell shows precise difference between tallied planned hours and her available hours per year. This way we can estimate which activities to reduce the number of - to get the HOUR TALLY green again.
-
+* Right pale-grey cell. This is the third cell down and is followed by two blank cells below it. It shows the difference between the hours available and the hours we intend to ask this therapist to work by giving them work. If we are "underworking" the therapist i.e. HOUR TALLY is yellow and the hours given are less than her available hours, the result here is 0. If we are (by mistake) planning to "overwork" the therapist, this cell shows a precise difference between tallied planned hours and her available hours per year. This way we can estimate which activities to reduce to get the HOUR TALLY green again.
 
 #### Clinical Activity rows:
 
-* Fairly simple. First column is the activity name, the second column - number of times we wish the clinican to carry out this activity per year, then the time this is going to take is calculated and displayed immediately. This third cell is where the complexity lies. **You should edit the second column only**, never the third or fourth.
-* Complexity of the third column: If you look into the row for assessments you can see the time is displayed as`=I35*indASSMT_E`. What it means is: take the number of assessments per year we plan for this therapist (20) stored in the cell `I35` and multiply by the value in the named cell `indASSMT_E` (stands for individual assessment episode). That name refers to the yellow time tally cell in the assessment intervention box (as seen above). This way - if you change any assessment component - by adding/removing component bits or changing time for any of them, the value in `indASSMT_E` cell changes - AND this change is immediately reflected across the whole model. For this therapist her assessment time per year would change and her total number of hours planned to work would change immediately, should we change the assessment intervention. Same goes for all other therapists and time totals for the team as well.
-* The fourth column is used to provide output for how many interventions of each type are undertaken at the team level. It multiplies the number of interventions we plan for this therapist (column two) by the number of times we emply this kind of therapist (top middle cell of clinican header rows). 
+* Fairly simple. _First_ column is the activity name, the _second_ column - number of times we wish the clinican to carry out this activity per year, then the time this is going to take is calculated and displayed immediately in the _third_ column - and that is where the complexity lies. **You should edit the second column only**, never the third or fourth.
+* _Complexity of the third column:_ If you look into the row for assessments you can see the time is displayed as`=I35*indASSMT_E`. What it means is: take the number of assessments per year we plan for this therapist (20) stored in the cell `I35` and multiply by the value in the named cell `indASSMT_E` (stands for individual assessment episode). That name refers to the yellow time tally cell in the assessment intervention box (as seen above). This way - if you change any assessment component - by adding/removing component bits or changing time for any of them, the value in `indASSMT_E` cell changes - AND this change is immediately reflected across the whole model. For this therapist her assessment time per year would change and her total number of hours planned to work would change immediately, should we change the assessment intervention. Same goes for all other therapists and time totals for the team as well.
+* The _fourth_ column is used to provide output for how many interventions of each type are undertaken at the team level. It multiplies the number of interventions we plan for this therapist (column two) by the number of times we emply this kind of therapist (top middle cell of clinican header rows). 
 	- The only exception is the SHO doctor - here we multiply also by 2. That is because the SHO changes twice a year. It is easier for us to plan activities for an individual SHO for 6 months, but at the team level we want to know the output for the year from that employment position.
 
 ### Weekly Overhead time
@@ -76,30 +76,30 @@ There is time that is required of each clinican before any work with the patient
 
 #### Overhead sum rows
 
-These display total time per week if one undertakes all the meetings and other overhead per week. Some explanation is in order.
+These display total time per week if one undertakes all the meetings and other overhead per week. Some explanation of what each overhead means is in order:
 
 #### Meeting overheads
 
-> Mostly clinical meetings.
+> These are mostly _clinical_ meetings.
 
 * **SCM supervision** 1.5 hours Tuesday morning. Vital space to bring problems of the quite risky SCM intervention to team supervision.
 * **Assessment workshop** 1 hour twice a week (2 PM). Where to bring assessment queries and present assessed patients. Seniors need to be present. Important meetings since they determine whether we take patients or not. There is a thought that we might take on MAP assessment workshop model which might be a bit more streamlined.
 * **Team Clinical meeting** main meeting per week; 1.5 hours. All need to be present.
 * **MBT supervison** 1.5 hours twice a week - to ensure MBT treatment runs well. As important as SCM supervision, but situation is often safer as patients engaged in a longer term therapeutic relationship.
 * **Check-in** 15 minutes every morning. Used to be in-person, now is mostly via Zoom. For people to tell what they will be doing during the day, where they will be, who is on duty, if they need any help. Strong tradition, but downside may be that attention might be fragmented and quite often they can extend to 20 even 30 minutes. Sometimes people post what they will be doing in the team WhatsApp and do not come to the check-in.
-* **Business and Reflective Practice meetings** - 1 hour alternate weeks. Not fully certain is 1 of each is enough per month.
+* **Business and Reflective Practice meetings** - 1 hour alternate weeks. It is not fully certain if 1 of each is enough per month.
 
 #### Ongoing work overheads
 
 * **Emergency work** - with our clients we can expect that there will be emergencies to be dealt with, sometimes it is our patients, sometimes helping other clinicians or the duty clinician. Everyone can expect to have about 2 hours per week budgeted for that.
-* **e-Mail routine** - 30 minutes a day - it probably is a significant underestimate of how much time people are to spend on e-mail. It is a source of a lot of ad-hoc, asynchronous communication and attention disruption. People who have worked in other trusts say that BEH e-mail culture is really difficult and often comes with expectation similar to instant messaging. A proposal would be to check the inbox once a day at the end of the day for half an hour. Not everyone can be happy with this.
+* **e-Mail routine** - 30 minutes a day - it probably is a significant underestimate of how much time people spend on e-mail. e-Mail is a source of a lot of ad-hoc, asynchronous communication and attention disruption. People who have worked in other trusts say that BEH e-mail culture is really difficult and often comes with expectation similar to instant messaging. A proposal would be to check the inbox once a day at the end of the day for half an hour. Not everyone can be happy with this.
 * **Reviews & Duty**  - 2 hours per week. Availability to other clinicians for SCM reviews, joint reviews and joint assessments.
-Duty work can be quite unpredictable, but generally main work is emptying of duty inbox / referrals inbox and picking up phone messages and speaking to relevant clinicians. Duty frequency is about once every 2 weeks - a frequent occurrence and we need to see if the amount of hours here reflects the time right. If we had data about duty work, that would be good; we could make a duty questionnaire where people quantify their work done for duty at the end of their duty day. 
+The duty rota work can be quite unpredictable, but generally the main work is emptying of duty inbox / referrals inbox and picking up phone messages and speaking to relevant clinicians. Some clinicans would see fewer patients on their duty days. Duty frequency is about once every 2 weeks - a frequent occurrence and we need to see if the amount of hours here reflects the time right. If we had data about duty work, that would be good; we could make a duty questionnaire where people quantify their work done for duty at the end of their duty day. 
 
 #### Development work overheads
 
 * **Continued Professional Development** - contractually this should happen in the work time. Estimate 1 h per week, very likely does not happen due to clinical work pressure. Should include any training, reading, mandatory training. 
-* **Clinical governance** - work on audit, otcome data collection and interpretation, receiving supervision. Estimate 1 h per week, very likely often does not happen.
+* **Clinical governance** - work on audit, otcome data collection and interpretation, receiving supervision. Estimate 1 h per week, very likely often does not happen, except for receiving supervision.
 * **Away day** - one away day per year translates to 10 minutes all 44 weeks when at work. And important event for team cohesion and deciding the way forward. 
 
 ### Time Available Per Year - a general box
@@ -108,7 +108,7 @@ Duty work can be quite unpredictable, but generally main work is emptying of dut
 
 Top part should be self-explanatory. The most important part is in NHS-blue - hours available for a full-time NHS worker per year.
 
-Bottom part shows how many therapist-persons (e.g. 15) we have employed and how many WTEs (whole time equivalent - i.e. work hours) this amounts to (e.g. 13.4). This comes from this spreadsheet summing up 2 top right cells from individual clinician boxes. Available WTEs (Clin) show that not all emplyoed clinicans have full time availability to engage with clinical work (e.g. Leads have other management work as do doctors and community transformation workers). Therefore WTEs available to do clinical work at Personality Disorders Pathway is less than employed WTEs - e.g. 8.9.
+Bottom part shows how many therapist-persons (e.g. 15) we have employed and how many WTEs (whole time equivalent - i.e. work hours) this amounts to (e.g. 13.4). This comes from this spreadsheet summing up 2 top right cells from individual clinician boxes. `Available WTEs (Clin)` show that not all emplyoed clinicans have full time availability to engage with clinical work (e.g. Leads have other management/etc work as do doctors and community transformation workers). Therefore WTEs available to do clinical work at Personality Disorders Pathway is less than employed WTEs - e.g. 8.9.
 
 ===
 BELOW THIS THE INFORMATION IS VERY MUCH WORK IN PROGRESS:  
