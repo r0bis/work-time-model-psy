@@ -1,4 +1,8 @@
-The model reflects work of a PD unit that provides mainly psychological interventions. The model consists of a spreadsheet (can work either in Excel or LibreOffice Calc). The model is documented in this `README.md` file. There is also going to be a visualization of the capacity done as a pipe-throughput model in R. 
+## PD service work time model
+
+This spreadsheew works, but is fairly complex. A simpler version geared just for assessments is available in the "Clock Stop" folder above. 
+
+The model available from this page reflects work of a PD unit that provides mainly psychological interventions. The model consists of a spreadsheet (can work either in Excel or LibreOffice Calc). The model is documented in this `README.md` file. There is also going to be a visualization of the capacity done as a pipe-throughput model in R. 
 
 ## Principles
 
