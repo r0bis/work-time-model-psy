@@ -1,8 +1,11 @@
 ## PD service work time model
 
-This spreadsheew works, but is fairly complex. A simpler version geared just for assessments is available in the "Clock Stop" folder above. 
+The main Excel spreadsheet works well, but is fairly complex. A simpler version geared just for assessments is available in the "Clock Stop" folder above. To understand how this works it is best to open the spreadsheets on your computer.
 
-The model available from this page reflects work of a PD unit that provides mainly psychological interventions. The model consists of a spreadsheet (can work either in Excel or LibreOffice Calc). The model is documented in this `README.md` file. There is also going to be a visualization of the capacity done as a pipe-throughput model in R. 
+* [Clock Stop Model](https://github.com/r0bis/work-time-model-psy/raw/main/clock-stop/clock-stop-model.xlsx) (the simpler one)
+* [Main Spreadsheet](https://github.com/r0bis/work-time-model-psy/raw/main/clock-stop/clock-stop-model.xlsx) (with all clinicians and work output per year included)
+
+The model reflects work of a PD unit. It is a spreadsheet (can work either in Excel or LibreOffice Calc). The model is documented in this `README.md` file. You can calculate the capacity of your unit as adopting this one to your needs should not be too difficult. 
 
 ## Principles
 
@@ -10,7 +13,7 @@ The model available from this page reflects work of a PD unit that provides main
 	1. _You only change number of minutes and number of times_. Do not change cells with time format, or formulas.
 2. Everybody has a _specific amount of working (contracted) time available per year_. Capacity of our unit is measured in how many people can be served per year given the MDT members we have and pathways we have (e.g. MBT, SCM, groups).  
 	1. Capacity will be visualized in a throughput model.  
-3. This _model works for small teams (2 to 17) of people who directly work with the patients_. It can be upscaled to larger teams, but perhaps more than 30 would become unwieldy. However it could work with more people if we had some "generic" workers - i.e. their expected work during the year would be the same - say to provide 30 episodes of SCM and 30 assessments per year. Then we could record that we employ 2 such therapists. There is a provision for this described below (top middle cell in clinician time box).
+3. This _model works better for small teams (2 to 17) of people who directly work with the patients_. It can be upscaled to larger teams, but perhaps more than 30 would become unwieldy. However it could work with more people if we had some "generic" workers - i.e. their expected work during the year would be the same - say to provide 30 episodes of SCM and 30 assessments per year. Then we could record that we employ 2 such therapists. There is a provision for this described below (top middle cell in clinician time box).
 4. The **timings of interventions** have been first assessed by the author and then opinions of clinicians are changed the estimates. Both individual input and collective input was gained at team away days. Resulting timings are a pretty good estimate how much time each intervention will take.
 5. The overhead time associated with each clinician is looked at on _per-week_ basis - as this is time easy to understand. Meetings and such things are usually better understood at weekly timescale. Later in the individual clinican time boxes we can estimate better how much time each clinician is to spend on overhead activity. 
 
@@ -132,6 +135,8 @@ d) we can add these numbers and reliably get totals of hours and minutes
 
 Using cell names it is possible to avoid a lot of the mess with absolute and relative cell addressing. The most important names are like: `availableWeeks` or `availableHours` - how many weeks and hours a year are available to a full time worker. If the worker is employed part time then the numbers can easily be modified (for 4 days a week work coefficient is 0.8 and so on).
 
+Fuller description and grouping of cells will be placed in folder `technical-help`. There are really just a few types of cells - as soon as you understand that, it should be easy to adapt the sheet to your needs. For now do not pay too much attention to the variables, I will explain them better in a couple of weeks.
+
 ### All named cells:
 
 * `availableFTE` - available FTE  in 'Res-Demand' sheet 
@@ -139,93 +144,93 @@ Using cell names it is possible to avoid a lot of the mess with absolute and rel
 * `availableWeeks` - available total work weeks per year in 'Work-Time' sheet 
 * `avgUKHours` - not used - is there just to 8 hour days (lunchbreak not subtracted) in 'Work-Time' sheet
 * `clinCONSgrp`	='Work-Time'!$X$12
-clinMBTgrp	='Work-Time'!$X$8
-clinMBTIgrp	='Work-Time'!$X$11
-clinSCMgrp	='Work-Time'!$X$16
-clinWAITLgrp	='Work-Time'!$X$13
-contractFTE	='Res-Demand'!$C$24
-demASSMT	='Res-Demand'!$C$5
-demASSMT_SCID	='Res-Demand'!$C$6
-demASSMTTot	='Res-Demand'!$A$5
-demCC	='Res-Demand'!$C$17
-demCONS_GRP	='Res-Demand'!$C$14
-demKClin_IND	='Res-Demand'!$C$16
-demLIAISON	='Res-Demand'!$C$12
-demMBT	='Res-Demand'!$C$9
-demMBTi	='Res-Demand'!$C$10
-demMEDRV	='Res-Demand'!$C$13
-demMedRvMBT	='Res-Demand'!$C$11
-demSCM_GRP	='Res-Demand'!$C$7
-demSCM_IND	='Res-Demand'!$C$8
-demSCREENING	='Res-Demand'!$C$4
-demWAITL_GRP	='Res-Demand'!$C$15
-existAbsWTE	='Work-Time'!$N$19
-existClinWTE	='Work-Time'!$O$18
-f2f_ASSMT	='Work-Time'!$E$21
-f2f_ASSMTSCID	='Work-Time'!$E$30
-f2f_CC	='Work-Time'!$E$133
-f2f_grpCONS	='Work-Time'!$E$107
-f2f_grpMBT	='Work-Time'!$E$54
-f2f_grpMBTI	='Work-Time'!$E$77
-f2f_grpSCM	='Work-Time'!$E$45
-f2f_grpWAITL	='Work-Time'!$E$96
-f2f_grpWLIST	='Work-Time'!$E$96
-f2f_indMBT	='Work-Time'!$E$65
-f2f_indSCM	='Work-Time'!$E$7
-f2f_LIAISON	='Work-Time'!$E$118
-f2f_MBT_GRP	='Work-Time'!$E$54
-f2f_MEDRV	='Work-Time'!$E$39
-f2f_MEDRVMBT	='Work-Time'!$E$89
-f2f_SCREENING	='Work-Time'!$E$140
-grpClinFctCONS	='Work-Time'!$A$106
-grpClinFctMBT	='Work-Time'!$A$53
-grpClinFctMBTI	='Work-Time'!$A$76
-grpClinFctSCM	='Work-Time'!$A$44
-grpClinFctWAITLIST	='Work-Time'!$A$95
-grpCONS_Y	='Work-Time'!$E$105
-grpCONSsize	='Work-Time'!$T$12
-grpFctCONS	='Work-Time'!$A$105
-grpFctMBT	='Work-Time'!$A$52
-grpFctMBTI	='Work-Time'!$A$75
-grpFctSCM	='Work-Time'!$A$43
-grpFctWAITLIST	='Work-Time'!$A$94
-grpMBT_Y	='Work-Time'!$E$52
-grpMBTI_E	='Work-Time'!$E$75
-grpMBTIsize	='Work-Time'!$T$11
-grpMBTsize	='Work-Time'!$T$8
-grpSCM_Y	='Work-Time'!$E$43
-grpSCMsize	='Work-Time'!$T$16
-grpWAITL_Y	='Work-Time'!$E$94
-grpWAITsize	='Work-Time'!$T$13
-indASSMT_E	='Work-Time'!$E$19
-indASSMTSCID_E	='Work-Time'!$E$28
-indCCOORD_E	='Work-Time'!$E$131
-indFct_SCREENING	='Work-Time'!$A$138
-indFctASSMT	='Work-Time'!$A$19
-indFctASSMT_SCID	='Work-Time'!$A$28
-indFctCCOORD	='Work-Time'!$A$131
-indFctKEYCLIN	='Work-Time'!$A$124
-indFctLIAISON	='Work-Time'!$A$116
-indFctMBT	='Work-Time'!$A$63
-indFctMEDRV	='Work-Time'!$A$37
-indFctMEDRV_MBT	='Work-Time'!$A$87
-indFctSCM	='Work-Time'!$A$5
-indKEYCLIN_E	='Work-Time'!$E$124
-indLIAISON_E	='Work-Time'!$E$116
-indMBT_E	='Work-Time'!$E$63
-indMEDRV_E	='Work-Time'!$E$37
-indMEDRVMBT_E	='Work-Time'!$E$87
-indSCM_E	='Work-Time'!$E$5
-indScreening	='Work-Time'!$E$138
-nrTH1	='Work-Time'!$J$29
-nrTH2	='Work-Time'!$N$29
-nrTH3	='Work-Time'!$R$29
-nrTH4	='Work-Time'!$V$29
-prodContH	='Work-Time'!$Z$2
-rng_Matt	='Work-Time'!$E$8
-weeklyDevelopment	='Work-Time'!$I$20
-weeklyMeetings	='Work-Time'!$I$18
-weeklyOngoing	='Work-Time'!$I$19
+* `clinMBTgrp`	='Work-Time'!$X$8
+* `clinMBTIgrp`	='Work-Time'!$X$11
+* `clinSCMgrp`	='Work-Time'!$X$16
+* `clinWAITLgrp`	='Work-Time'!$X$13
+* `contractFTE`	='Res-Demand'!$C$24
+* `demASSMT`	='Res-Demand'!$C$5
+* `demASSMT_SCID`	='Res-Demand'!$C$6
+* `demASSMTTot`	='Res-Demand'!$A$5
+* `demCC`	='Res-Demand'!$C$17
+* `demCONS_GRP`	='Res-Demand'!$C$14
+* `demKClin_IND`	='Res-Demand'!$C$16
+* `demLIAISON`	='Res-Demand'!$C$12
+* `demMBT`	='Res-Demand'!$C$9
+* `demMBTi`	='Res-Demand'!$C$10
+* `demMEDRV`	='Res-Demand'!$C$13
+* `demMedRvMBT`	='Res-Demand'!$C$11
+* `demSCM_GRP`	='Res-Demand'!$C$7
+* `demSCM_IND`	='Res-Demand'!$C$8
+* `demSCREENING`	='Res-Demand'!$C$4
+* `demWAITL_GRP`	='Res-Demand'!$C$15
+* `existAbsWTE`	='Work-Time'!$N$19
+* `existClinWTE`	='Work-Time'!$O$18
+* `f2f_ASSMT`	='Work-Time'!$E$21
+* `f2f_ASSMTSCID`	='Work-Time'!$E$30
+* `f2f_CC`	='Work-Time'!$E$133
+* `f2f_grpCONS`	='Work-Time'!$E$107
+* `f2f_grpMBT`	='Work-Time'!$E$54
+* `f2f_grpMBTI`	='Work-Time'!$E$77
+* `f2f_grpSCM`	='Work-Time'!$E$45
+* `f2f_grpWAITL`	='Work-Time'!$E$96
+* `f2f_grpWLIST`	='Work-Time'!$E$96
+* `f2f_indMBT`	='Work-Time'!$E$65
+* `f2f_indSCM`	='Work-Time'!$E$7
+* `f2f_LIAISON`	='Work-Time'!$E$118
+* `f2f_MBT_GRP`	='Work-Time'!$E$54
+* `f2f_MEDRV`	='Work-Time'!$E$39
+* `f2f_MEDRVMBT`	='Work-Time'!$E$89
+* `f2f_SCREENING`	='Work-Time'!$E$140
+* `grpClinFctCONS`	='Work-Time'!$A$106
+* `grpClinFctMBT`	='Work-Time'!$A$53
+* `grpClinFctMBTI`	='Work-Time'!$A$76
+* `grpClinFctSCM`	='Work-Time'!$A$44
+* `grpClinFctWAITLIST`	='Work-Time'!$A$95
+* `grpCONS_Y`	='Work-Time'!$E$105
+* `grpCONSsize`	='Work-Time'!$T$12
+* `grpFctCONS`	='Work-Time'!$A$105
+* `grpFctMBT`	='Work-Time'!$A$52
+* `grpFctMBTI`	='Work-Time'!$A$75
+* `grpFctSCM`	='Work-Time'!$A$43
+* `grpFctWAITLIST`	='Work-Time'!$A$94
+* `grpMBT_Y`	='Work-Time'!$E$52
+* `grpMBTI_E`	='Work-Time'!$E$75
+* `grpMBTIsize`	='Work-Time'!$T$11
+* `grpMBTsize`	='Work-Time'!$T$8
+* `grpSCM_Y`	='Work-Time'!$E$43
+* `grpSCMsize`	='Work-Time'!$T$16
+* `grpWAITL_Y`	='Work-Time'!$E$94
+* `grpWAITsize`	='Work-Time'!$T$13
+* `indASSMT_E`	='Work-Time'!$E$19
+* `indASSMTSCID_E`	='Work-Time'!$E$28
+* `indCCOORD_E`	='Work-Time'!$E$131
+* `indFct_SCREENING`	='Work-Time'!$A$138
+* `indFctASSMT`	='Work-Time'!$A$19
+* `indFctASSMT_SCID`	='Work-Time'!$A$28
+* `indFctCCOORD`	='Work-Time'!$A$131
+* `indFctKEYCLIN`	='Work-Time'!$A$124
+* `indFctLIAISON`	='Work-Time'!$A$116
+* `indFctMBT`	='Work-Time'!$A$63
+* `indFctMEDRV`	='Work-Time'!$A$37
+* `indFctMEDRV_MBT`	='Work-Time'!$A$87
+* `indFctSCM`	='Work-Time'!$A$5
+* `indKEYCLIN_E`	='Work-Time'!$E$124
+* `indLIAISON_E`	='Work-Time'!$E$116
+* `indMBT_E`	='Work-Time'!$E$63
+* `indMEDRV_E`	='Work-Time'!$E$37
+* `indMEDRVMBT_E`	='Work-Time'!$E$87
+* `indSCM_E`	='Work-Time'!$E$5
+* `indScreening`	='Work-Time'!$E$138
+* `nrTH1`	='Work-Time'!$J$29
+* `nrTH2`	='Work-Time'!$N$29
+* `nrTH3`	='Work-Time'!$R$29
+* `nrTH4`	='Work-Time'!$V$29
+* `prodContH`	='Work-Time'!$Z$2
+* `rng_Matt`	='Work-Time'!$E$8
+* `weeklyDevelopment`	='Work-Time'!$I$20
+* `weeklyMeetings`	='Work-Time'!$I$18
+* `weeklyOngoing`	='Work-Time'!$I$19
 
 
 
